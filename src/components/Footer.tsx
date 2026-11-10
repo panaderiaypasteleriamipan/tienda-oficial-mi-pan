@@ -5,9 +5,10 @@ import { StoreSettings } from '../types';
 interface FooterProps {
   settings: StoreSettings;
   onGoToTab: (tab: 'home' | 'catalog' | 'reviews' | 'admin') => void;
+  onOpenLegal: (section?: 'cookies' | 'terms' | 'privacy') => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ settings, onGoToTab }) => {
+export const Footer: React.FC<FooterProps> = ({ settings, onGoToTab, onOpenLegal }) => {
   return (
     <footer className="bg-slate-900 text-white border-t border-slate-800 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -97,6 +98,30 @@ export const Footer: React.FC<FooterProps> = ({ settings, onGoToTab }) => {
                   Gestión de Inventario (Admin)
                 </button>
               </li>
+              <li className="pt-2 border-t border-slate-800">
+                <button
+                  onClick={() => onOpenLegal('cookies')}
+                  className="hover:text-amber-400 transition text-[11px] text-slate-400 flex items-center gap-1"
+                >
+                  <span>🍪 Política de Cookies</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onOpenLegal('privacy')}
+                  className="hover:text-amber-400 transition text-[11px] text-slate-400"
+                >
+                  Privacidad y Datos
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onOpenLegal('terms')}
+                  className="hover:text-amber-400 transition text-[11px] text-slate-400"
+                >
+                  Términos y Condiciones
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -125,11 +150,33 @@ export const Footer: React.FC<FooterProps> = ({ settings, onGoToTab }) => {
 
         {/* Bottom Credits */}
         <div className="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
-          <p>© {new Date().getFullYear()} Panadería y Pastelería MiPan 2025 C.A. Todos los derechos reservados.</p>
-          <p className="flex items-center gap-1">
-            <span>Hecho con dedicación en Los Teques</span>
-            <Wheat className="w-3.5 h-3.5 text-amber-500" />
-          </p>
+          <p>© {new Date().getFullYear()} Panadería y Pastelería MiPan 2025 C.A. RIF {settings.rif}. Todos los derechos reservados.</p>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => onOpenLegal('cookies')}
+              className="hover:text-amber-400 transition"
+            >
+              Cookies
+            </button>
+            <span>•</span>
+            <button
+              onClick={() => onOpenLegal('privacy')}
+              className="hover:text-amber-400 transition"
+            >
+              Privacidad
+            </button>
+            <span>•</span>
+            <button
+              onClick={() => onOpenLegal('terms')}
+              className="hover:text-amber-400 transition"
+            >
+              Términos
+            </button>
+            <span>•</span>
+            <span className="flex items-center gap-1 text-amber-400">
+              <Wheat className="w-3.5 h-3.5" /> Los Teques
+            </span>
+          </div>
         </div>
       </div>
     </footer>

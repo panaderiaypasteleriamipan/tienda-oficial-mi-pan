@@ -1,0 +1,27 @@
+{
+  "id": "/",
+  "name": "Panadería y Pastelería MiPan 2025 C.A.",
+  "short_name": "MiPan 2025",
+  "description": "Panadería artesanal y repostería en Los Teques. Pedidos directos por WhatsApp con tasa oficial BCV.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFFDF9",
+  "theme_color": "#8B5A2B",
+  "orientation": "portrait-primary",
+  "categories": ["food", "shopping", "lifestyle"],
+  "icons": [
+    {
+      "src": "/logomipan.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/logomipan.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}

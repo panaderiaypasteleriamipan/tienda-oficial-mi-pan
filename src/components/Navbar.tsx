@@ -15,6 +15,7 @@ import {
   Store
 } from 'lucide-react';
 import { StoreSettings } from '../types';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface NavbarProps {
   currentTab: 'home' | 'catalog' | 'reviews' | 'admin';
@@ -179,6 +180,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Right Action Controls */}
         <div className="flex items-center gap-2">
+          {/* PWA Install Button */}
+          <div className="hidden sm:block">
+            <PWAInstallButton />
+          </div>
+
           {/* Theme selector */}
           <div className="hidden sm:block">
             <select
@@ -292,18 +298,23 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </div>
 
-          {/* Theme switcher on mobile */}
-          <div className="pt-2 flex items-center justify-between text-xs">
-            <span className="text-slate-500">Temporada:</span>
-            <select
-              value={settings.seasonTheme}
-              onChange={(e) => updateTheme(e.target.value as 'classic' | 'navidad')}
-              aria-label="Seleccionar tema de temporada en móvil"
-              className="text-xs bg-amber-50 dark:bg-slate-800 border border-amber-200 dark:border-slate-700 rounded-lg px-2 py-1.5 font-medium text-amber-900 dark:text-amber-300"
-            >
-              <option value="classic">🥖 Clásico Artesanal</option>
-              <option value="navidad">🎄 Mágica Navidad</option>
-            </select>
+          {/* Theme switcher & Install on mobile */}
+          <div className="pt-2 flex flex-col gap-2 text-xs">
+            <div className="flex items-center justify-between">
+              <span className="text-slate-500">Temporada:</span>
+              <select
+                value={settings.seasonTheme}
+                onChange={(e) => updateTheme(e.target.value as 'classic' | 'navidad')}
+                aria-label="Seleccionar tema de temporada en móvil"
+                className="text-xs bg-amber-50 dark:bg-slate-800 border border-amber-200 dark:border-slate-700 rounded-lg px-2 py-1.5 font-medium text-amber-900 dark:text-amber-300"
+              >
+                <option value="classic">🥖 Clásico Artesanal</option>
+                <option value="navidad">🎄 Mágica Navidad</option>
+              </select>
+            </div>
+            <div className="pt-1 flex justify-center">
+              <PWAInstallButton />
+            </div>
           </div>
         </div>
       )}

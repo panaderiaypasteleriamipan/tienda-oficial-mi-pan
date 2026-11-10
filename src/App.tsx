@@ -38,6 +38,9 @@ import { AdminPanel } from './components/AdminPanel';
 import { ReviewsSection } from './components/ReviewsSection';
 import { Footer } from './components/Footer';
 import { SnowCanvas } from './components/SnowCanvas';
+import { OfflineIndicator } from './components/OfflineIndicator';
+import { CookieBanner } from './components/CookieBanner';
+import { LegalModal } from './components/LegalModal';
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState<'home' | 'catalog' | 'reviews' | 'admin'>('home');
@@ -57,6 +60,15 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [invoiceOrder, setInvoiceOrder] = useState<CustomerOrder | null>(null);
+
+  // Legal & Cookie Modal State
+  const [isLegalOpen, setIsLegalOpen] = useState(false);
+  const [legalSection, setLegalSection] = useState<'cookies' | 'terms' | 'privacy'>('cookies');
+
+  const handleOpenLegal = (section: 'cookies' | 'terms' | 'privacy' = 'cookies') => {
+    setLegalSection(section);
+    setIsLegalOpen(true);
+  };
 
   // Catalog Filters & Sorting
   const [catalogCategory, setCatalogCategory] = useState<Category>('todos');
@@ -541,10 +553,25 @@ export default function App() {
         settings={settings}
       />
 
+      {/* Legal & Cookies Modal */}
+      <LegalModal
+        isOpen={isLegalOpen}
+        onClose={() => setIsLegalOpen(false)}
+        settings={settings}
+        defaultSection={legalSection}
+      />
+
+      {/* Offline Status Alert Banner */}
+      <OfflineIndicator />
+
+      {/* Cookie & LocalStorage Consent Banner */}
+      <CookieBanner onOpenLegal={handleOpenLegal} />
+
       {/* Footer */}
       <Footer
         settings={settings}
         onGoToTab={(tab) => setCurrentTab(tab)}
+        onOpenLegal={handleOpenLegal}
       />
     </div>
   );
