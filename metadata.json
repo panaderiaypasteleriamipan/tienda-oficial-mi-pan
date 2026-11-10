@@ -1,0 +1,6 @@
+{
+  "name": "Panadería MiPan 2025 | Tienda Virtual & Admin",
+  "description": "Tienda online y catálogo interactivo de Panadería MiPan 2025 C.A. en Los Teques. Pedidos directos vía WhatsApp, tasa BCV en tiempo real, gestión de inventario y panel de administración.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
